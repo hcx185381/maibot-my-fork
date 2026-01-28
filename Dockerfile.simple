@@ -25,8 +25,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制项目代码
 COPY . .
 
-# 创建必要的目录
+# 创建必要的目录和 .env 文件
 RUN mkdir -p /MaiMBot/data /MaiMBot/logs /MaiMBot/plugins
+
+# 创建 .env 文件（Render 环境变量会覆盖这些值）
+RUN echo "EULA_AGREE=1b662741904d7155d1ce1c00b3530d0d" > /MaiMBot/.env && \
+    echo "PRIVACY_AGREE=9943b855e72199d0f5016ea39052f1b6" >> /MaiMBot/.env && \
+    echo "TZ=Asia/Shanghai" >> /MaiMBot/.env && \
+    echo "HOST=0.0.0.0" >> /MaiMBot/.env && \
+    echo "PORT=22400" >> /MaiMBot/.env
 
 # 暴露端口
 EXPOSE 8000 22400
