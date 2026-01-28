@@ -25,8 +25,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制项目代码
 COPY . .
 
-# 创建必要的目录和 .env 文件
-RUN mkdir -p /MaiMBot/data /MaiMBot/logs /MaiMBot/plugins
+# 创建必要的目录和配置文件
+RUN mkdir -p /MaiMBot/data /MaiMBot/logs /MaiMBot/plugins /MaiMBot/config
 
 # 创建 .env 文件（Render 环境变量会覆盖这些值）
 RUN echo "EULA_AGREE=1b662741904d7155d1ce1c00b3530d0d" > /MaiMBot/.env && \
@@ -34,6 +34,84 @@ RUN echo "EULA_AGREE=1b662741904d7155d1ce1c00b3530d0d" > /MaiMBot/.env && \
     echo "TZ=Asia/Shanghai" >> /MaiMBot/.env && \
     echo "HOST=0.0.0.0" >> /MaiMBot/.env && \
     echo "PORT=22400" >> /MaiMBot/.env
+
+# 创建 bot_config.toml 配置文件
+RUN echo "[inner]" > /MaiMBot/config/bot_config.toml && \
+    echo "version = \"6.9.0\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[bot]" >> /MaiMBot/config/bot_config.toml && \
+    echo "platform = \"qq\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "qq_account = \"\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "nickname = \"麦麦\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "alias_names = [\"AI\", \"机器人\"]" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[personality]" >> /MaiMBot/config/bot_config.toml && \
+    echo "personality = \"一个友好的AI助手，善于交流，乐于助人。\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "reply_style = \"自然友好的对话风格，简洁明了。\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[chat]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_auto_reply = true" >> /MaiMBot/config/bot_config.toml && \
+    echo "reply_probability = 1.0" >> /MaiMBot/config/bot_config.toml && \
+    echo "reply_interval_seconds = 1" >> /MaiMBot/config/bot_config.toml && \
+    echo "max_reply_per_minute = 20" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[relationship]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_relationship = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[expression]" >> /MaiMBot/config/bot_config.toml && \
+    echo "learning_list = []" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[emoji]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[memory]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_memory = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[mood]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_mood = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[keyword_reaction]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[chinese_typo]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[response_post_process]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = true" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[response_splitter]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = true" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[telemetry]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[experimental]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_llm_tool_call = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[maim_message]" >> /MaiMBot/config/bot_config.toml && \
+    echo "use_custom = true" >> /MaiMBot/config/bot_config.toml && \
+    echo "host = \"127.0.0.1\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "port = 22403" >> /MaiMBot/config/bot_config.toml && \
+    echo "mode = \"ws\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "auth_token = []" >> /MaiMBot/config/bot_config.toml && \
+    echo "use_wss = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "cert_file = \"\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "key_file = \"\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[lpmm_knowledge]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[tool]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable_builtin_tools = false" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[debug]" >> /MaiMBot/config/bot_config.toml && \
+    echo "log_level = \"INFO\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[custom_prompt]" >> /MaiMBot/config/bot_config.toml && \
+    echo "extra_identity = \"\"" >> /MaiMBot/config/bot_config.toml && \
+    echo "" >> /MaiMBot/config/bot_config.toml && \
+    echo "[voice]" >> /MaiMBot/config/bot_config.toml && \
+    echo "enable = false" >> /MaiMBot/config/bot_config.toml
 
 # 暴露端口
 EXPOSE 8000 22400
