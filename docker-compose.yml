@@ -27,10 +27,13 @@ services:
     # image: infinitycat/maibot:dev
     environment:
       - TZ=Asia/Shanghai
+      - HOST=0.0.0.0
+      - PORT=22400
 #      - EULA_AGREE=99f08e0cab0190de853cb6af7d64d4de # 同意EULA
 #      - PRIVACY_AGREE=9943b855e72199d0f5016ea39052f1b6 # 同意EULA
-#    ports:
-#      - "8000:8000"
+    ports:
+      - "22400:22400"   # QQ 网关（ws-reverse）
+      # - "8080:8080"   # 如需暴露内部 FastAPI，可解除注释
     volumes:
       - ./docker-config/mmc/.env:/MaiMBot/.env # 持久化env配置文件
       - ./docker-config/mmc:/MaiMBot/config # 持久化bot配置文件
