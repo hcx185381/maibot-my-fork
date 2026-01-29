@@ -15,7 +15,16 @@
       "Bash(docker restart:*)",
       "Bash(docker ps:*)",
       "Bash(if exist maibot_statistics.html rmdir /s /q maibot_statistics.html)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd deployment configuration and helper scripts\n\n- Add Docker configuration files for MaiBot deployment\n- Add helper scripts for easy startup and management:\n  - 扫码登录.bat - QR code login helper\n  - 启动服务.bat - Quick start script\n  - 停止服务.bat - Stop script\n  - 检查状态.bat - Status checker\n  - 完整启动指南.txt - Complete startup guide\n  - MaiBot配置教程.txt - Configuration tutorial\n- Add model configurations \\(DeepSeek, GLM\\)\n- Add NapCat configuration for QQ integration\n- Update .gitignore for Python project\n- Improve docker-compose setup\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(cd:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(du:*)",
+      "Bash(sqlite3:*)",
+      "Bash(git check-ignore:*)"
     ]
   }
 }

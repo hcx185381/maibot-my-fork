@@ -31,6 +31,8 @@ services:
       - TZ=Asia/Shanghai
       - HOST=0.0.0.0
       - PORT=22400
+      - WEBUI_HOST=0.0.0.0
+      - WEBUI_PORT=8001
     ports:
       - "22400:22400"   # QQ 网关（ws-reverse）
       - "8001:8001"     # WebUI 管理界面
@@ -57,6 +59,7 @@ services:
       - "6099:6099"
     volumes:
       - ./docker-config/napcat:/app/napcat/config # 持久化napcat配置文件
+      - ./docker-config/napcat/entrypoint.sh:/app/entrypoint.sh # 自定义启动脚本，禁用GPU
       - ./data/qq:/app/.config/QQ # 持久化QQ本体
       - ./data/MaiMBot:/MaiMBot/data # 共享目录
     container_name: maim-bot-napcat
