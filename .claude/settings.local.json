@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(start:*)",
+      "Bash(timeout:*)",
+      "Bash(curl:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker cp:*)",
+      "Bash(taskkill:*)",
+      "Bash(docker exec:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(tasklist:*)",
+      "Bash(docker restart:*)",
+      "Bash(docker ps:*)",
+      "Bash(if exist maibot_statistics.html rmdir /s /q maibot_statistics.html)",
+      "Bash(git add:*)"
+    ]
+  }
+}

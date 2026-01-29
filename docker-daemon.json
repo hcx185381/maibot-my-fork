@@ -1,0 +1,8 @@
+{
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io",
+    "https://docker.1panel.live",
+    "https://dockerhub.icu"
+  ],
+  "dns": ["8.8.8.8", "114.114.114.114"]
+}

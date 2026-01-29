@@ -1,0 +1,106 @@
+[inner]
+version = "1.11.0"
+
+# 配置文件版本号迭代规则同bot_config.toml
+
+[[api_providers]]
+name = "DeepSeek"
+base_url = "https://api.deepseek.com"
+api_key = "sk-d38850098a9540b7a88ded9e311f2a46"
+client_type = "openai"
+max_retry = 2
+timeout = 60
+retry_interval = 2
+
+[[models]]
+model_identifier = "deepseek-chat"
+name = "deepseek-chat"
+api_provider = "DeepSeek"
+price_in = 0.0
+price_out = 0.0
+
+[model_task_config.utils]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 10.0
+selection_strategy = "random"
+
+[model_task_config.tool_use]
+model_list = ["deepseek-chat"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 8.0
+selection_strategy = "random"
+
+[model_task_config.replyer]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 15.0
+selection_strategy = "random"
+
+[model_task_config.planner]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10.0
+selection_strategy = "random"
+
+[model_task_config.vlm]
+model_list = ["deepseek-chat"]
+max_tokens = 2000
+slow_threshold = 15.0
+selection_strategy = "random"
+
+[model_task_config.voice]
+model_list = ["deepseek-chat"]
+slow_threshold = 10.0
+selection_strategy = "random"
+
+[model_task_config.embedding]
+model_list = ["deepseek-chat"]
+slow_threshold = 5.0
+selection_strategy = "random"
+
+[model_task_config.lpmm_entity_extract]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15.0
+selection_strategy = "random"
+
+[model_task_config.lpmm_rdf_build]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15.0
+selection_strategy = "random"
+
+[model_task_config.lpmm_qa]
+model_list = ["deepseek-chat"]
+temperature = 0.7
+max_tokens = 2000
+slow_threshold = 15.0
+selection_strategy = "random"
+
+[model_task_config.emotion]
+model_list = ["deepseek-chat"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 10.0
+selection_strategy = "random"
+
+[model_task_config.utils_small]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10.0
+selection_strategy = "random"
+
+[model_task_config.planner_small]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10.0
+selection_strategy = "random"

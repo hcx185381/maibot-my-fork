@@ -1,0 +1,84 @@
+[inner]
+version = "1.5.0"
+
+[[api_providers]]
+name = "Ollama"
+base_url = "http://host.docker.internal:11434/v1"
+api_key = "ollama"  # 本地Ollama可随便填
+client_type = "openai"
+max_retry = 0
+timeout = 120
+retry_interval = 2
+
+[[models]]
+# 你在 ollama ls 的实际模型名
+model_identifier = "deepseek-r1:8b"
+name = "ollama-deepseek-8b"
+api_provider = "Ollama"
+price_in = 0.0
+price_out = 0.0
+# 如果你用的是思维链/思考版（如 R1）并且需要强制流式输出，可打开：
+# force_stream_mode = true
+
+[model_task_config.replyer]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.3
+max_tokens = 800
+
+[model_task_config.planner]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.3
+max_tokens = 800
+
+[model_task_config.utils]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.2
+max_tokens = 800
+
+[model_task_config.utils_small]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.3
+max_tokens = 800
+
+[model_task_config.emotion]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.5
+max_tokens = 800
+
+[model_task_config.tool_use]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.5
+max_tokens = 800
+
+[model_task_config.embedding]
+model_list = ["ollama-deepseek-8b"]
+
+[model_task_config.vlm]
+model_list = ["ollama-deepseek-8b"]
+max_tokens = 800
+
+[model_task_config.voice]
+model_list = ["ollama-deepseek-8b"]
+max_tokens = 800
+
+[model_task_config.planner_small]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.3
+max_tokens = 800
+
+[model_task_config.lpmm_entity_extract]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.2
+max_tokens = 800
+
+[model_task_config.lpmm_rdf_build]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.2
+max_tokens = 800
+
+[model_task_config.lpmm_qa]
+model_list = ["ollama-deepseek-8b"]
+temperature = 0.7
+max_tokens = 800
+
+

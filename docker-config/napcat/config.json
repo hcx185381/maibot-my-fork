@@ -1,0 +1,13 @@
+{
+  "qq_account": "3622889793",
+  "ws_reverse": [
+    {
+      "url": "ws://maim-bot-adapters:8095/qq",
+      "access_token": ""
+    }
+  ],
+  "heartbeat": {
+    "enable": true,
+    "interval": 5000
+  }
+}

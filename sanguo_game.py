@@ -131,6 +131,10 @@ class Game:
         wrong_answers = list(all_answers - {self.correct_answer})
         random.shuffle(wrong_answers)
         
+        # 确保至少有3个错误答案（如果不够则重复）
+        while len(wrong_answers) < 3:
+            wrong_answers.extend(wrong_answers[:3 - len(wrong_answers)])
+        
         self.options = [self.correct_answer] + wrong_answers[:3]
         random.shuffle(self.options)
         
@@ -326,13 +330,13 @@ class Game:
             return
         
         # A, B, C, D 对应选项 0, 1, 2, 3
-        if key == pygame.K_a:
+        if key == pygame.K_a and len(self.options) > 0:
             self.check_answer(self.options[0])
-        elif key == pygame.K_b:
+        elif key == pygame.K_b and len(self.options) > 1:
             self.check_answer(self.options[1])
-        elif key == pygame.K_c:
+        elif key == pygame.K_c and len(self.options) > 2:
             self.check_answer(self.options[2])
-        elif key == pygame.K_d:
+        elif key == pygame.K_d and len(self.options) > 3:
             self.check_answer(self.options[3])
     
     def run(self):

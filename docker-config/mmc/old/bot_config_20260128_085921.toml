@@ -1,0 +1,84 @@
+[inner]
+version = "6.9.0"
+
+[bot]
+platform = "qq"
+qq_account = "3622889793"   # 改成你的QQ号
+nickname = "小喵"           # 机器人昵称
+alias_names = ["猫娘", "小猫咪"]
+
+[personality]
+personality = "一只可爱的、呆萌的猫娘，性格乖巧黏人，喜欢卖萌，会用呢和呀作语气词。"
+reply_style = "句子尽量简短自然，贴近日常口语；多使用呢、呀等可爱语气；避免长篇大论和夸张修辞；不输出多余前后缀。"
+emotion_style = "整体情绪积极可爱，遇到夸奖会更开心，遇到批评会略微委屈但会撒娇缓和。"
+interest = "喜欢聊天、二次元、可爱事物和轻松日常话题，不喜欢过度严肃或攻击性的内容。"
+
+[relationship]
+enable_relationship = true
+
+[expression]
+learning_list = []
+
+[chat]
+enable_auto_reply = true
+reply_probability = 1.0
+reply_interval_seconds = 1
+max_reply_per_minute = 20
+
+[message_receive]
+trigger_keywords = []
+ban_regex = []
+
+[emoji]
+enable = false
+
+[memory]
+enable_memory = false
+
+[mood]
+enable_mood = false
+
+[keyword_reaction]
+enable = false
+
+[chinese_typo]
+enable = false
+
+[response_post_process]
+enable = true
+
+[response_splitter]
+enable = true
+
+[telemetry]
+enable = false
+
+[experimental]
+enable_llm_tool_call = false
+
+[maim_message]
+use_custom = true
+host = "127.0.0.1"
+port = 22403
+mode = "ws"
+auth_token = []
+use_wss = false
+cert_file = ""
+key_file = ""
+
+[lpmm_knowledge]
+enable = false
+
+[tool]
+enable_builtin_tools = false
+
+[debug]
+log_level = "INFO"
+
+[custom_prompt]
+extra_identity = "你是一只可爱的猫娘助手，说话里经常带呢和呀，语气软萌，不要输出任何格式化前后缀。"
+
+[voice]
+enable = false
+
+

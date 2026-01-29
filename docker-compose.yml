@@ -25,18 +25,21 @@ services:
     #### dev ####
     # image: sengokucola/maibot:dev
     # image: infinitycat/maibot:dev
+    env_file:
+      - .env.production
     environment:
       - TZ=Asia/Shanghai
       - HOST=0.0.0.0
       - PORT=22400
-#      - EULA_AGREE=99f08e0cab0190de853cb6af7d64d4de # 同意EULA
-#      - PRIVACY_AGREE=9943b855e72199d0f5016ea39052f1b6 # 同意EULA
     ports:
       - "22400:22400"   # QQ 网关（ws-reverse）
+      - "8001:8001"     # WebUI 管理界面
       # - "8080:8080"   # 如需暴露内部 FastAPI，可解除注释
     volumes:
       - ./docker-config/mmc/.env:/MaiMBot/.env # 持久化env配置文件
       - ./docker-config/mmc:/MaiMBot/config # 持久化bot配置文件
+      - ./eula.confirmed:/MaiMBot/eula.confirmed # EULA确认文件
+      - ./privacy.confirmed:/MaiMBot/privacy.confirmed # 隐私协议确认文件
       - ./data/MaiMBot/maibot_statistics.html:/MaiMBot/maibot_statistics.html #统计数据输出
       - ./data/MaiMBot:/MaiMBot/data # 共享目录
       - ./data/MaiMBot/plugins:/MaiMBot/plugins # 插件目录
