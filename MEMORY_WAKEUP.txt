@@ -1,0 +1,155 @@
+# 🔄 记忆唤醒指令 - Claude Code Assistant
+
+## 快速唤醒
+
+```
+"继续我们之前的 MaiBot 配置工作"
+```
+
+## 详细唤醒模板
+
+```
+唤醒记忆：我需要继续 MaiBot 项目的配置工作
+
+项目信息：
+- 项目名称: MaiBot QQ 机器人
+- 项目路径: E:\github ai xiangmu\MaiBot
+- GitHub 仓库: https://github.com/hcx185381/maibot-my-fork
+- QQ 号: 3622889793
+- 昵称: 海澜
+
+当前配置：
+- 模型: GLM-4 (可切换到 DeepSeek)
+- WebUI Token: Hcx185381!Admin@2026
+- WebUI 地址: http://localhost:8001
+- 机器人昵称: AI助手 (小喵)
+
+已完成的工作：
+✅ 修复 NapCat GPU 问题
+✅ 修复 WebUI 外部访问问题
+✅ 创建 9 个管理工具
+✅ 配置双模型支持
+✅ 创建完整文档
+
+会话记录：
+- 查看: E:\github ai xiangmu\MaiBot\CLAUDE_CONVERSATION_20260129.txt
+- 包含所有问题、解决方案、配置详情
+
+请帮我：
+[在此处描述您需要的新功能或问题]
+```
+
+## 一句话唤醒
+
+### 场景1: 添加新功能
+```
+"这是我的 MaiBot 项目（路径: E:\github ai xiangmu\MaiBot），帮我添加 [新功能名称]"
+```
+
+### 场景2: 排查问题
+```
+"我的 MaiBot 出问题了（项目在 E:\github ai xiangmu\MaiBot），帮我查看日志"
+```
+
+### 场景3: 优化配置
+```
+"继续优化我的 MaiBot 配置（E:\github ai xiangmu\MaiBot），我想 [具体需求]"
+```
+
+### 场景4: 学习某功能
+```
+"教我如何使用 MaiBot 的 [某个功能]，项目在 E:\github ai xiangmu\MaiBot"
+```
+
+## 关键信息速查
+
+```bash
+# 项目位置
+cd "E:\github ai xiangmu\MaiBot"
+
+# 启动服务
+docker-compose up -d
+
+# 查看日志
+docker logs maim-bot-core
+
+# 重启服务
+docker-compose restart core
+
+# 查看数据库
+双击: 查看数据库.bat
+
+# Git 操作
+双击: 查看Git历史.bat
+双击: Git版本回退工具.bat
+```
+
+## 项目结构速览
+
+```
+MaiBot/
+├── *.bat                      # 管理工具
+├── docker-config/             # 配置文件
+│   ├── mmc/                   # MaiBot 配置
+│   └── napcat/                # NapCat 配置
+├── data/MaiMBot/              # 数据目录
+│   ├── MaiBot.db              # 主数据库
+│   ├── hippo_memorizer/       # 记忆文件
+│   └── logs/                  # 日志
+├── docker-compose.yml         # Docker 编排
+├── README.md                  # 原始 README
+├── README_CUSTOM.md           # 定制版 README ⭐
+└── CLAUDE_CONVERSATION_*.txt  # 会话记录 ⭐
+```
+
+## 常用命令速查
+
+```bash
+# 启动
+docker-compose up -d
+
+# 停止
+docker-compose down
+
+# 重启核心
+docker-compose restart core
+
+# 查看日志
+docker logs maim-bot-core --tail 50
+
+# 检查状态
+docker ps
+
+# 进入容器
+docker exec -it maim-bot-core sh
+
+# 查看数据库
+sqlite3 data/MaiMBot/MaiBot.db "SELECT * FROM messages LIMIT 10;"
+```
+
+## Token 和地址
+
+| 服务 | 地址 | Token |
+|------|------|-------|
+| WebUI | http://localhost:8001 | Hcx185381!Admin@2026 |
+| NapCat | http://localhost:6099 | - |
+| SQLite | http://localhost:8120 | - |
+
+## 重要配置文件
+
+| 文件 | 用途 |
+|------|------|
+| `docker-config/mmc/bot_config.toml` | 机器人人设和行为 |
+| `docker-config/mmc/model_config.toml` | AI 模型配置 |
+| `docker-config/napcat/entrypoint.sh` | NapCat 启动脚本 |
+| `data/MaiMBot/webui.json` | WebUI 配置 |
+
+## 下次对话开始时
+
+请直接说：
+
+```
+"我需要继续 MaiBot 项目的工作，请查看 E:\github ai xiangmu\MaiBot\CLAUDE_CONVERSATION_20260129.txt 了解我们的历史配置"
+```
+
+这样我就能快速恢复上下文，继续为您提供帮助！🚀
