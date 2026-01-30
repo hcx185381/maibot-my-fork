@@ -33,6 +33,11 @@ services:
       - PORT=22400
       - WEBUI_HOST=0.0.0.0
       - WEBUI_PORT=8001
+      # 代理配置 (用于访问AI API)
+      # 使用WSL网关IP，在不同网络环境下都稳定
+      - HTTP_PROXY=http://172.30.240.1:7897
+      - HTTPS_PROXY=http://172.30.240.1:7897
+      - NO_PROXY=localhost,127.0.0.1,maim-bot-napcat,maim-bot-adapters,sqlite-web
     ports:
       - "22400:22400"   # QQ 网关（ws-reverse）
       - "8001:8001"     # WebUI 管理界面
