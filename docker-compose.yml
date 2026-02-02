@@ -34,8 +34,8 @@ services:
       - WEBUI_HOST=0.0.0.0
       - WEBUI_PORT=8001
       # 代理配置 (用于访问AI API)
-      # 使用GLM/DeepSeek/SiliconFlow等国内API时不需要代理
-      # 如需使用OpenAI/Claude等国外API，请取消下面两行的注释并开启代理
+      # 农村网络环境间歇性不稳定，有时候需要代理
+      # 如果机器人不回复，取消下面两行的注释并开启Clash的"允许局域网连接"
       # - HTTP_PROXY=http://172.30.240.1:7897
       # - HTTPS_PROXY=http://172.30.240.1:7897
       - NO_PROXY=localhost,127.0.0.1,maim-bot-napcat,maim-bot-adapters,sqlite-web
@@ -105,3 +105,5 @@ volumes:
 networks:
   maim_bot:
     driver: bridge
+
+

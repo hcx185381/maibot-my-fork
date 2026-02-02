@@ -1,7 +1,7 @@
 [inner]
 version = "1.11.0"
 
-# 配置文件版本号迭代规则同bot_config.toml
+# 闂傚倷鐒﹀妯肩矓閸洘鍋柛鈩冪☉濡﹢鏌涢妷顖炴妞ゆ劒绮欓弻锝呂旈埀顒勬偋婵犲偊鑰垮ù鍏兼綑閻鏌ｉ妶搴＄仩闁搞倐鈧秮褰掓偑閸涱垳袣濡炪値鍋勯ˇ闈涚暦濮橆兘鏋庨煫鍥ㄦ煥閳ь剛娓秓t_config.toml
 
 [[api_providers]]
 name = "GLM"
@@ -77,88 +77,96 @@ price_in = 0
 price_out = 0
 force_stream_mode = false
 
+[[models]]
+model_identifier = "deepseek-vl"
+name = "deepseek-vl"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
 [models.extra_params]
 [model_task_config.utils]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.2
 max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
 [model_task_config.tool_use]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.5
 max_tokens = 2000
 slow_threshold = 8
 selection_strategy = "random"
 
 [model_task_config.replyer]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
 [model_task_config.planner]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
 [model_task_config.vlm]
-model_list = ["glm-4v-plus"]
+model_list = ["deepseek-chat"]
 max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
 [model_task_config.voice]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 slow_threshold = 10
 selection_strategy = "random"
 
 [model_task_config.embedding]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 slow_threshold = 5
 selection_strategy = "random"
 
 [model_task_config.lpmm_entity_extract]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.2
 max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
 [model_task_config.lpmm_rdf_build]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.2
 max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
 [model_task_config.lpmm_qa]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.7
 max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
 [model_task_config.emotion]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.5
 max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
 [model_task_config.utils_small]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
 [model_task_config.planner_small]
-model_list = ["glm-4-plus"]
+model_list = ["deepseek-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 10
