@@ -13,7 +13,7 @@ services:
 #      - "8095:8095"
     volumes:
       - ./docker-config/adapters/config.toml:/adapters/config.toml # 持久化adapters配置文件
-      - ./data/adapters:/adapters/data # adapters 数据持久化
+      - ./data/adapters:/adapters/data # adapters 数据持久�?
     restart: always
     networks:
       - maim_bot
@@ -34,12 +34,13 @@ services:
       - WEBUI_HOST=0.0.0.0
       - WEBUI_PORT=8001
       # 代理配置 (用于访问AI API)
-      # 使用WSL网关IP，在不同网络环境下都稳定
-      - HTTP_PROXY=http://172.30.240.1:7897
-      - HTTPS_PROXY=http://172.30.240.1:7897
+      # 使用GLM/DeepSeek/SiliconFlow等国内API时不需要代理
+      # 如需使用OpenAI/Claude等国外API，请取消下面两行的注释并开启代理
+      # - HTTP_PROXY=http://172.30.240.1:7897
+      # - HTTPS_PROXY=http://172.30.240.1:7897
       - NO_PROXY=localhost,127.0.0.1,maim-bot-napcat,maim-bot-adapters,sqlite-web
     ports:
-      - "22400:22400"   # QQ 网关（ws-reverse）
+      - "22400:22400"   # QQ 网关（ws-reverse�?
       - "8001:8001"     # WebUI 管理界面
       # - "8080:8080"   # 如需暴露内部 FastAPI，可解除注释
     volumes:
@@ -51,7 +52,7 @@ services:
       - ./data/MaiMBot:/MaiMBot/data # 共享目录
       - ./data/MaiMBot/plugins:/MaiMBot/plugins # 插件目录
       - ./data/MaiMBot/logs:/MaiMBot/logs # 日志目录
-      - site-packages:/usr/local/lib/python3.13/site-packages # 持久化Python包
+      - site-packages:/usr/local/lib/python3.13/site-packages # 持久化Python�?
     restart: always
     networks:
       - maim_bot
@@ -82,12 +83,12 @@ services:
     volumes:
       - ./data/MaiMBot:/data/MaiMBot
     environment:
-      - SQLITE_DATABASE=MaiMBot/MaiBot.db  # 你的数据库文件
+      - SQLITE_DATABASE=MaiMBot/MaiBot.db  # 你的数据库文�?
     networks:
       - maim_bot
 
   # chat2db占用相对较高但是功能强大
-  # 内存占用约600m，内存充足推荐选此
+  # 内存占用�?00m，内存充足推荐选此
   # chat2db:
   #   image: chat2db/chat2db:latest
   #   container_name: maim-bot-chat2db

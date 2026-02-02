@@ -1,0 +1,72 @@
+========================================
+     MaiBot Model Switch Guide
+========================================
+
+NEW SCRIPTS (English version to avoid encoding issues):
+
+1. switch_to_glm.bat
+   - Switch to GLM models
+   - Supports emoji/image recognition
+   - Best for: Daily chat, emoji interaction
+
+2. switch_to_deepseek_v3.bat
+   - Switch to DeepSeek-V3 (Fast)
+   - NO emoji/image recognition
+   - Best for: Programming, quick questions
+
+3. switch_to_deepseek_r1.bat
+   - Switch to DeepSeek-R1 (Thinking)
+   - NO emoji/image recognition
+   - Best for: Math, logic, reasoning
+
+========================================
+HOW TO USE:
+========================================
+
+Double-click the .bat file to switch models
+
+The script will:
+1. Backup your config
+2. Switch models
+3. Restart container
+4. Done in 10-20 seconds
+
+========================================
+MODEL DETAILS:
+========================================
+
+GLM Models (switch_to_glm.bat)
+  - Reply: glm-4-plus
+  - Plan: glm-4-plus
+  - Vision: glm-4v-plus
+  - Utils: glm-4-air
+  - Emoji recognition: YES
+  - Image recognition: YES
+
+DeepSeek-V3 (switch_to_deepseek_v3.bat)
+  - All tasks: deepseek-chat
+  - Emoji recognition: NO
+  - Image recognition: NO
+  - Speed: Fast
+  - Best for: Programming, chat
+
+DeepSeek-R1 (switch_to_deepseek_r1.bat)
+  - All tasks: deepseek-reasoner
+  - Emoji recognition: NO
+  - Image recognition: NO
+  - Speed: Slow (needs thinking time)
+  - Best for: Math, logic, reasoning
+
+========================================
+COMPARISON:
+========================================
+
+Model           Emoji  Image  Speed  Reasoning
+-------------------------------------------------
+GLM              YES    YES    Fast    Good
+DeepSeek-V3      NO     NO     Very Fast  Good
+DeepSeek-R1       NO     NO     Slow    Excellent
+
+========================================
+Created: 2026-02-02
+========================================

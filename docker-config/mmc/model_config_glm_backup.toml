@@ -20,6 +20,15 @@ client_type = "openai"
 max_retry = 3
 timeout = 120
 retry_interval = 5
+
+[[api_providers]]
+name = "DeepSeek"
+base_url = "https://api.deepseek.com"
+api_key = "sk-d38850098a9540b7a88ded9e311f2a46"
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
 [[models]]
 model_identifier = "glm-4"
 name = "glm-4"

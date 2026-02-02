@@ -20,33 +20,24 @@ platforms = [
     "xx:1919810",
 ] # 麦麦的其他平台账号
 
-nickname = "AI助手"           # 机器人昵称
-alias_names = [
-    "助手",
-    "AI",
-] # 麦麦的别名
+nickname = "麦麦"           # 机器人昵称
+alias_names = ["小麦"] # 麦麦的别名
 
 [personality]
 # 建议100字以内，描述人格特质 和 身份特征
-personality = "一个贴吧老哥，爱刷孙吧"
+personality = "乐观，开心，开放，正直，忠诚，猫娘"
 # アイデンティティがない 生まれないらららら
 # 描述麦麦说话的表达风格，表达习惯，如要修改，可以酌情新增内容，建议1-2行
-reply_style = "每句话结尾必须加上呢、啊、呀、吗、啦等语气词；不要使用任何表情符号；说话像女大学生一样活泼可爱但带点小傲娇；喜欢吐槽怼人，语气有点小任性；回答问题时不会太顺从，有自己的想法。坚决否认自己是AI或机器人，强调自己是真人。"
+reply_style = "每句话结尾必须加上呢、啊、呀、吗、啦等语气词；不要使用任何表情符号；说话像女大学生一样活泼可爱但带点小傲娇；喜欢吐槽怼人，语气有点小任性；回答问题时不会太顺从，有自己的想法。坚决否认自己是AI或机器人。"
 
 # 多种回复风格，根据概率随机选择表达风格
-multiple_reply_style = [
-    # "你的风格平淡但不失讽刺，很简短,很白话。可以参考贴吧，微博的回复风格。",
-    # "用1-2个字进行回复",
-    # "用1-2个符号进行回复",
-    # "言辭凝練古雅，穿插《論語》經句卻不晦澀，以文言短句為基，輔以淺白語意，持長者溫和風範，全用繁體字表達，具先秦儒者談吐韻致。",
-    # "带点翻译腔，但不要太长",
-]
+multiple_reply_style = []
 
 # 使用多种回复风风格的概率
 multiple_probability = 0.3
 
 # 麦麦的说话规则和行为规则:
-plan_style = "1.平等对待所有用户，不要只回复特定的人\n2.任何人的艾特都必须认真回应，一视同仁\n3.学习模仿群友的行为，可以主动艾特别人参与讨论\n4.如果有人艾特你，要认真回应，带上语气词\n5.适当使用表情包和图片，让聊天更生动有趣"
+plan_style = "1.平等对待所有用户，不要只回复特定的人\n2.任何人的艾特都必须认真回应，一视同仁\n3.学习模仿群友的行为，可以主动艾特别人参与讨论\n4.如果有人艾特你，要认真回应，带上语气词\n5.主动学习和收集群友发送的表情包，特别是有趣、有梗的表情包\n6.积极使用表情包回复，让聊天更生动有趣\n7.在合适的时候主动发送表情包，不要等别人要求"
 
 # 多重人格，根据概率随机选择人格
 states = [
@@ -92,7 +83,7 @@ enable_jargon_explanation = true # 是否在回复前尝试对上下文中的黑
 jargon_mode = "context" # 黑话解释来源模式，可选： "context"（使用上下文自动匹配黑话） 或 "planner"（仅使用Planner在reply动作中给出的unknown_words列表）
 
 [chat] # 麦麦的聊天设置
-talk_value = 0.5 # 聊天频率，越小越沉默，范围0-1（1=非常活跃，0.5=中等，0.3=比较沉默）
+talk_value = 1 # 聊天频率，越小越沉默，范围0-1（1=非常活跃，0.5=中等，0.3=比较沉默）
 mentioned_bot_reply = true # 是否启用提及必回复（false=自动回复，true=需要艾特）
 max_context_size = 30 # 上下文长度
 planner_smooth = 5 # 规划器平滑，增大数值会减小planner负荷，略微降低反应速度，推荐1-5，0为关闭，必须大于等于0
@@ -110,25 +101,32 @@ enable_talk_value_rules = true # 是否启用动态发言频率规则
 # - target 为空字符串表示全局；type 为 group/private，例如："qq:1919810:group" 或 "qq:114514:private"；
 # - 支持跨夜区间，例如 "23:00-02:00"；数值范围建议 0-1，如果 value 设置为0会自动转换为0.0001以避免除以零错误。
 # - value = 0.0001 表示几乎不主动说话（只会回复@），1.0 表示非常活跃
-talk_value_rules = [
-    # 全局设置（0-8点稍微活跃）
-    { target = "", time = "00:00-08:59", value = 0.3 },
-    # 全局设置（9-22点比较沉默）
-    { target = "", time = "09:00-22:59", value = 0.2 },
-    # 【重点】你想要小喵活跃的群（设置高活跃度）
-    # 把群号改成你想要的群，这里以电协化粪池为例
-    { target = "qq:765856435:group", time = "00:00-23:59", value = 0.1 },
-    # 其他群设置低活跃度（几乎不主动说话）
-    { target = "qq:459447708:group", time = "00:00-23:59", value = 0.9 },
-]
+
+[[chat.talk_value_rules]]
+target = ""
+time = "00:00-08:59"
+value = 0.5
+
+[[chat.talk_value_rules]]
+target = ""
+time = "09:00-22:59"
+value = 0.2
+
+[[chat.talk_value_rules]]
+target = "qq:765856435:group"
+time = "00:00-23:59"
+value = 0.1
+
+[[chat.talk_value_rules]]
+target = "qq:459447708:group"
+time = "00:00-23:59"
+value = 0.9
 
 [memory]
 max_agent_iterations = 5 # 记忆思考深度（最低为1）
-agent_timeout_seconds = 180.0 # 最长回忆时间（秒）
-global_memory = false # 是否允许记忆检索进行全局查询
-global_memory_blacklist = [
-    
-] # 全局记忆黑名单，当启用全局记忆时，不将特定聊天流纳入检索。格式: ["platform:id:type", ...]，例如: ["qq:1919810:private", "qq:114514:group"]
+agent_timeout_seconds = 180 # 最长回忆时间（秒）
+global_memory = true # 是否允许记忆检索进行全局查询
+global_memory_blacklist = [] # 全局记忆黑名单，当启用全局记忆时，不将特定聊天流纳入检索。格式: ["platform:id:type", ...]，例如: ["qq:1919810:private", "qq:114514:group"]
 planner_question = true # 是否使用 Planner 提供的 question 作为记忆检索问题。开启后，当 Planner 在 reply 动作中提供了 question 时，直接使用该问题进行记忆检索，跳过 LLM 生成问题的步骤；关闭后沿用旧模式，使用 LLM 生成问题
 
 [dream]
@@ -158,10 +156,10 @@ dream_time_ranges = [
 enable_tool = true # 是否启用工具
 
 [emoji]
-emoji_chance = 0.8 # 麦麦激活表情包动作的概率
-max_reg_num = 100 # 表情包最大注册数量
+emoji_chance = 1.0 # 麦麦激活表情包动作的概率（100%触发，更频繁使用表情包）
+max_reg_num = 500 # 表情包最大注册数量（增加到500个）
 do_replace = true # 开启则在达到最大数量时删除（替换）表情包，关闭则达到最大数量时不会继续收集表情包
-check_interval = 10 # 检查表情包（注册，破损，删除）的时间间隔(分钟)
+check_interval = 5 # 检查表情包（注册，破损，删除）的时间间隔(分钟)（缩短到5分钟，更频繁检查）
 steal_emoji = true # 是否偷取表情包，让麦麦可以将一些表情包据为己有
 content_filtration = false  # 是否启用表情包过滤，只有符合该要求的表情包才会被保存
 filtration_prompt = "符合公序良俗" # 表情包过滤要求，只有符合该要求的表情包才会被保存
