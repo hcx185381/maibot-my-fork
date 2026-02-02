@@ -1273,11 +1273,10 @@ switch_to_glm.bat
 
 当前配置的API密钥:
 ┌─────────────────────────────────────────────────────┐
-│  GLM                                                 │
-│  89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte   │
+│  ⚠️ API密钥已从文档中移除以保护安全                 │
 │                                                     │
-│  DeepSeek                                            │
-│  sk-d38850098a9540b7a88ded9e311f2a46                 │
+│  请查看: docker-config/mmc/model_config.toml        │
+│  GLM和DeepSeek的密钥配置在文件中                    │
 └─────────────────────────────────────────────────────┘
 
 安全建议:
