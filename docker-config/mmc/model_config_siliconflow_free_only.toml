@@ -1,0 +1,319 @@
+[inner]
+version = "1.11.0"
+
+# ========================================
+# 硅基流动全免费配置方案
+# ========================================
+# 用途：所有模型都使用硅基流动的免费模型
+# 优势：完全免费，零成本使用
+# 限制：模型性能不如付费模型
+# ========================================
+
+[[api_providers]]
+name = "GLM"
+base_url = "https://open.bigmodel.cn/api/paas/v4"
+api_key = "89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte"
+client_type = "openai"
+max_retry = 2
+timeout = 60
+retry_interval = 2
+
+[[api_providers]]
+name = "SiliconFlow"
+base_url = "https://api.siliconflow.cn/v1"
+api_key = "sk-idjdrtdithcxuozmairymdebbovithfcidkvnavnchwnxavh"  # ← 替换成你的API Key
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+
+[[api_providers]]
+name = "DeepSeek"
+base_url = "https://api.deepseek.com"
+api_key = "sk-d38850098a9540b7a88ded9e311f2a46"
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+
+# ========================================
+# 模型定义（仅免费模型）
+# ========================================
+
+# ==================== GLM 模型 ====================
+[[models]]
+model_identifier = "glm-4"
+name = "glm-4"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-plus"
+name = "glm-4-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4v-plus"
+name = "glm-4v-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-air"
+name = "glm-4-air"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ==================== 硅基流动 - 免费文本模型 ====================
+
+# Qwen2.5-7B-Instruct（完全免费，推荐）
+[[models]]
+model_identifier = "Qwen/Qwen2.5-7B-Instruct"
+name = "Qwen/Qwen2.5-7B-Instruct"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# Qwen2-7B-Instruct（完全免费）
+[[models]]
+model_identifier = "Qwen/Qwen2-7B-Instruct"
+name = "Qwen/Qwen2-7B-Instruct"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# GLM-4-9B（完全免费）
+[[models]]
+model_identifier = "THUDM/glm-4-9b-chat"
+name = "THUDM/glm-4-9b-chat"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# DeepSeek-R1-Distill-Qwen-7B（完全免费）
+[[models]]
+model_identifier = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ==================== 硅基流动 - 免费视觉模型 ====================
+
+# PaddleOCR-VL（完全免费，OCR专用）
+[[models]]
+model_identifier = "PaddlePaddle/PaddleOCR-VL"
+name = "PaddlePaddle/PaddleOCR-VL"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# Qwen2-VL-7B-Instruct（超便宜，接近免费）
+[[models]]
+model_identifier = "Qwen/Qwen2-VL-7B-Instruct"
+name = "Qwen/Qwen2-VL-7B-Instruct"
+api_provider = "SiliconFlow"
+price_in = 0.5
+price_out = 2
+force_stream_mode = false
+
+# ==================== DeepSeek 官方模型（备用） ====================
+[[models]]
+model_identifier = "deepseek-chat"
+name = "deepseek-chat"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "deepseek-vl"
+name = "deepseek-vl"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ========================================
+# 任务配置（全部使用免费模型）
+# ========================================
+
+[models.extra_params]
+
+# 工具任务（使用Qwen2.5-7B免费模型）
+[model_task_config.utils]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 工具调用（使用免费R1蒸馏版）
+[model_task_config.tool_use]
+model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 8
+selection_strategy = "random"
+
+# 回复生成（使用Qwen2.5-7B免费模型）
+[model_task_config.replyer]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 规划任务（使用免费R1蒸馏版）
+[model_task_config.planner]
+model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 视觉理解（使用免费OCR）
+[model_task_config.vlm]
+model_list = ["PaddlePaddle/PaddleOCR-VL", "Qwen/Qwen2-VL-7B-Instruct"]
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 语音处理（使用Qwen2.5-7B免费模型）
+[model_task_config.voice]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+slow_threshold = 10
+selection_strategy = "random"
+
+# 向量化（使用Qwen2.5-7B免费模型）
+[model_task_config.embedding]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+slow_threshold = 5
+selection_strategy = "random"
+
+# 知识图谱实体抽取（使用免费模型）
+[model_task_config.lpmm_entity_extract]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱RDF构建（使用免费模型）
+[model_task_config.lpmm_rdf_build]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱问答（使用Qwen2.5-7B免费模型）
+[model_task_config.lpmm_qa]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.7
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 情感分析（使用免费模型）
+[model_task_config.emotion]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小工具任务（使用免费模型）
+[model_task_config.utils_small]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小规划任务（使用免费R1蒸馏版）
+[model_task_config.planner_small]
+model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+
+# ========================================
+# 免费模型说明
+# ========================================
+#
+# 【完全免费模型】
+# 1. Qwen/Qwen2.5-7B-Instruct ⭐ 推荐
+#    - 通义千问2.5，70亿参数
+#    - 性能均衡，适合大多数任务
+#    - 完全免费，无限制使用
+#
+# 2. Qwen/Qwen2-7B-Instruct
+#    - 通义千问2.0，70亿参数
+#    - 稳定可靠，基础任务足够
+#    - 完全免费，无限制使用
+#
+# 3. THUDM/glm-4-9b-chat
+#    - 智谱GLM-4，90亿参数
+#    - 中文能力强，适合对话
+#    - 完全免费，无限制使用
+#
+# 4. deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
+#    - DeepSeek R1蒸馏版，70亿参数
+#    - 推理能力强，适合复杂任务
+#    - 完全免费，无限制使用
+#
+# 5. PaddlePaddle/PaddleOCR-VL ⭐ 视觉专用
+#    - 飞桨OCR，专门识别文字
+#    - 文档解析、表格识别
+#    - 完全免费，无限制使用
+#
+# 【接近免费模型】
+# 6. Qwen/Qwen2-VL-7B-Instruct
+#    - 通义千问视觉模型
+#    - 输入¥0.5/百万，输出¥2/百万
+#    - 非常便宜，推荐使用
+#
+# ========================================
+# 【使用建议】
+# ========================================
+#
+# ✅ 推荐场景：
+# - 个人学习、测试、开发
+# - 预算有限的项目
+# - 轻量级应用（日均<1000条消息）
+# - 对性能要求不极端的场景
+#
+# ❌ 不推荐场景：
+# - 高并发生产环境
+# - 对质量要求极高的场景
+# - 复杂推理任务（免费模型能力有限）
+#
+# 💡 性能对比：
+# - 免费模型 vs DeepSeek-V3: 约70-80%性能
+# - Qwen2.5-7B: 性价比最高，推荐主用
+# - R1蒸馏版: 推理能力强，适合复杂任务
+# - PaddleOCR: OCR识别效果好
+#
+# 💰 成本优势：
+# - 完全免费：¥0/月
+# - 即使使用Qwen2-VL也很便宜：<¥5/月
+# - 比DeepSeek官方便宜（长期）
+#
+# ========================================

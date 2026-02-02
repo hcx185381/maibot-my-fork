@@ -1,0 +1,167 @@
+[inner]
+version = "1.11.0"
+
+# 闂傚倸鍊烽悞锕€顭垮Ο鑲╃煋闁割偅娲橀崑顏堟煕閳╁啰鈽夋俊顐ｏ耿閺屾盯濡烽鐐搭€嶅銈嗗姃缁瑩寮婚敐鍛傛棃鍩€椤掑嫭鍋嬪┑鐘插亰閼板灝霉閸忓吋缍戦柣顓燁殜閺岋綁濡舵惔锛勪哗闂佹悶鍊愰埀顒冪М瑜版帗鍋戦柛娑卞灣琚ｆ俊鐐€ら崑鍕囬棃娑氭殾婵﹩鍏橀弸搴ㄧ叓閸ャ劍鐓ラ柍褜鍓涘〒绉搕_config.toml
+
+[[api_providers]]
+name = "GLM"
+base_url = "https://open.bigmodel.cn/api/paas/v4"
+api_key = "89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte"
+client_type = "openai"
+max_retry = 2
+timeout = 60
+retry_interval = 2
+
+[[api_providers]]
+name = "SiliconFlow"
+base_url = "https://api.siliconflow.cn/v1"
+api_key = "sk-idjdrtdithcxuozmairymdebbovithfcidkvnavnchwnxavh"
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+
+[[api_providers]]
+name = "DeepSeek"
+base_url = "https://api.deepseek.com"
+api_key = "sk-d38850098a9540b7a88ded9e311f2a46"
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+[[models]]
+model_identifier = "glm-4"
+name = "glm-4"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-plus"
+name = "glm-4-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4v-plus"
+name = "glm-4v-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-air"
+name = "glm-4-air"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "deepseek-chat"
+name = "deepseek-chat"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "deepseek-vl"
+name = "deepseek-vl"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[models.extra_params]
+[model_task_config.utils]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+[model_task_config.tool_use]
+model_list = ["deepseek-chat"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 8
+selection_strategy = "random"
+
+[model_task_config.replyer]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+[model_task_config.planner]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+[model_task_config.vlm]
+model_list = ["deepseek-chat"]
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+[model_task_config.voice]
+model_list = ["deepseek-chat"]
+slow_threshold = 10
+selection_strategy = "random"
+
+[model_task_config.embedding]
+model_list = ["deepseek-chat"]
+slow_threshold = 5
+selection_strategy = "random"
+
+[model_task_config.lpmm_entity_extract]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+[model_task_config.lpmm_rdf_build]
+model_list = ["deepseek-chat"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+[model_task_config.lpmm_qa]
+model_list = ["deepseek-chat"]
+temperature = 0.7
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+[model_task_config.emotion]
+model_list = ["deepseek-chat"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+[model_task_config.utils_small]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+[model_task_config.planner_small]
+model_list = ["deepseek-chat"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+
