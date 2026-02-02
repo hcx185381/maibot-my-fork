@@ -26,7 +26,10 @@
       "Bash(sqlite3:*)",
       "Bash(git check-ignore:*)",
       "Bash(docker network inspect:*)",
-      "Bash(docker-compose:*)"
+      "Bash(docker-compose:*)",
+      "mcp__web-reader__webReader",
+      "Bash(python:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
