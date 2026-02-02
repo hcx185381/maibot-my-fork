@@ -9,9 +9,9 @@ echo.
 echo Features: Fast, versatile, cost-effective
 echo Best for: Chat, code, writing
 echo.
-echo WARNING:
-echo   - NO GLM models used
-echo   - Emoji/image recognition DISABLED
+echo VISUAL SUPPORT:
+echo   - VLM task: DeepSeek-VL (OCR + Emoji support)
+echo   - Can recognize images and emojis
 echo.
 
 if not exist "docker-config\mmc\model_config.toml" (
@@ -31,9 +31,11 @@ echo OK - Config backed up
 echo.
 echo [2/3] Switch to DeepSeek-V3...
 
-powershell -Command "$content = Get-Content 'docker-config\mmc\model_config.toml'; $content = $content -replace 'model_list = \[\"[^\"]+\"\]', 'model_list = [\"deepseek-chat\"]'; Set-Content 'docker-config\mmc\model_config.toml' $content"
+powershell -Command "$content = Get-Content 'docker-config\mmc\model_config.toml'; $content = $content -replace '(?s)\[model_task_config\.vlm\](.*?)model_list = \[\"[^\"]+\"\]', '[model_task_config.vlm]$1model_list = [\"deepseek-vl\"]'; $content = $content -replace '(?s)\[model_task_config\.(?!vlm)(.*?)model_list = \[\"[^\"]+\"\]', '[model_task_config.$1model_list = [\"deepseek-chat\"]'; Set-Content 'docker-config\mmc\model_config.toml' $content"
 
-echo OK - All tasks switched to DeepSeek-V3
+echo OK - Models switched:
+echo   - Text tasks: DeepSeek-V3
+echo   - Visual task: DeepSeek-VL (Emoji enabled)
 
 echo.
 echo [3/3] Restart container...
@@ -45,13 +47,14 @@ echo ========================================
 echo       Done! Switched to DeepSeek-V3
 echo ========================================
 echo.
-echo Current config (Pure DeepSeek):
-echo   - All tasks: DeepSeek-V3 (deepseek-chat)
+echo Current config (DeepSeek + VL):
+echo   - Text tasks: DeepSeek-V3 (deepseek-chat)
+echo   - Visual task: DeepSeek-VL (deepseek-vl)
 echo.
-echo NOTES:
-echo   - Emoji recognition: DISABLED
-echo   - Image recognition: DISABLED
-echo   - Chat: Works normally
+echo FEATURES:
+echo   - Emoji recognition: ENABLED (via DeepSeek-VL)
+echo   - Image recognition: ENABLED (via DeepSeek-VL)
+echo   - Chat: Fast & cost-effective
 echo.
 echo Press any key to exit...
 pause >nul
