@@ -1,0 +1,276 @@
+[inner]
+version = "1.11.0"
+
+# ========================================
+# 硅基流动完整配置样本
+# ========================================
+# 用途：所有任务都使用硅基流动API
+# 优势：新用户14元+500万Tokens免费额度
+# 注意：需先替换YOUR_API_KEY为你的真实API Key
+# ========================================
+
+[[api_providers]]
+name = "GLM"
+base_url = "https://open.bigmodel.cn/api/paas/v4"
+api_key = "89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte"
+client_type = "openai"
+max_retry = 2
+timeout = 60
+retry_interval = 2
+
+[[api_providers]]
+name = "SiliconFlow"
+base_url = "https://api.siliconflow.cn/v1"
+api_key = "sk-idjdrtdithcxuozmairymdebbovithfcidkvnavnchwnxavh"  # ← 替换成你的API Key
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+
+[[api_providers]]
+name = "DeepSeek"
+base_url = "https://api.deepseek.com"
+api_key = "sk-d38850098a9540b7a88ded9e311f2a46"
+client_type = "openai"
+max_retry = 3
+timeout = 120
+retry_interval = 5
+
+# ========================================
+# 模型定义
+# ========================================
+
+# ==================== GLM 模型 ====================
+[[models]]
+model_identifier = "glm-4"
+name = "glm-4"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-plus"
+name = "glm-4-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4v-plus"
+name = "glm-4v-plus"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "glm-4-air"
+name = "glm-4-air"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ==================== DeepSeek 官方模型 ====================
+[[models]]
+model_identifier = "deepseek-chat"
+name = "deepseek-chat"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+[[models]]
+model_identifier = "deepseek-vl"
+name = "deepseek-vl"
+api_provider = "DeepSeek"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ==================== 硅基流动 - 文本模型 ====================
+
+# DeepSeek-V3.2（最强性能，日常聊天）
+[[models]]
+model_identifier = "deepseek-ai/DeepSeek-V3.2"
+name = "deepseek-ai/DeepSeek-V3.2"
+api_provider = "SiliconFlow"
+price_in = 2
+price_out = 8
+force_stream_mode = false
+
+# DeepSeek-R1（推理专用，复杂规划）
+[[models]]
+model_identifier = "deepseek-ai/DeepSeek-R1"
+name = "deepseek-ai/DeepSeek-R1"
+api_provider = "SiliconFlow"
+price_in = 4
+price_out = 16
+force_stream_mode = false
+
+# Qwen2.5-7B-Instruct（免费模型，速度快）
+[[models]]
+model_identifier = "Qwen/Qwen2.5-7B-Instruct"
+name = "Qwen/Qwen2.5-7B-Instruct"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ==================== 硅基流动 - 视觉模型 ====================
+
+# PaddleOCR-VL（完全免费，OCR和文档解析）
+[[models]]
+model_identifier = "PaddlePaddle/PaddleOCR-VL"
+name = "PaddlePaddle/PaddleOCR-VL"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# Qwen2-VL-7B-Instruct（超便宜，通用视觉理解）
+[[models]]
+model_identifier = "Qwen/Qwen2-VL-7B-Instruct"
+name = "Qwen/Qwen2-VL-7B-Instruct"
+api_provider = "SiliconFlow"
+price_in = 0.5
+price_out = 2
+force_stream_mode = false
+
+# ========================================
+# 任务配置（全部使用硅基流动）
+# ========================================
+
+[models.extra_params]
+
+# 工具任务（使用免费模型，省钱）
+[model_task_config.utils]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 工具调用（使用R1推理模型，更智能）
+[model_task_config.tool_use]
+model_list = ["deepseek-ai/DeepSeek-R1"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 8
+selection_strategy = "random"
+
+# 回复生成（使用V3.2，最佳对话质量）
+[model_task_config.replyer]
+model_list = ["deepseek-ai/DeepSeek-V3.2"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 规划任务（使用R1推理模型）
+[model_task_config.planner]
+model_list = ["deepseek-ai/DeepSeek-R1"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 视觉理解（免费OCR + 便宜VL模型）
+[model_task_config.vlm]
+model_list = ["PaddlePaddle/PaddleOCR-VL", "Qwen/Qwen2-VL-7B-Instruct"]
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 语音处理（使用V3.2）
+[model_task_config.voice]
+model_list = ["deepseek-ai/DeepSeek-V3.2"]
+slow_threshold = 10
+selection_strategy = "random"
+
+# 向量化（使用V3.2）
+[model_task_config.embedding]
+model_list = ["deepseek-ai/DeepSeek-V3.2"]
+slow_threshold = 5
+selection_strategy = "random"
+
+# 知识图谱实体抽取（使用免费模型）
+[model_task_config.lpmm_entity_extract]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱RDF构建（使用免费模型）
+[model_task_config.lpmm_rdf_build]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱问答（使用V3.2，质量更好）
+[model_task_config.lpmm_qa]
+model_list = ["deepseek-ai/DeepSeek-V3.2"]
+temperature = 0.7
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 情感分析（使用免费模型）
+[model_task_config.emotion]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小工具任务（使用免费模型）
+[model_task_config.utils_small]
+model_list = ["Qwen/Qwen2.5-7B-Instruct"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小规划任务（使用R1推理模型）
+[model_task_config.planner_small]
+model_list = ["deepseek-ai/DeepSeek-R1"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+
+# ========================================
+# 配置说明
+# ========================================
+#
+# 【成本优化策略】
+# 1. 简单任务用Qwen2.5-7B（免费）
+# 2. 复杂任务用DeepSeek-V3.2（付费）
+# 3. 推理任务用DeepSeek-R1（付费）
+# 4. 视觉任务用PaddleOCR（免费）
+#
+# 【使用方法】
+# 1. 复制本文件内容
+# 2. 替换第18行的API Key
+# 3. 粘贴到 docker-config/mmc/model_config.toml
+# 4. 重启：docker-compose restart core
+#
+# 【模型选择指南】
+# - Qwen2.5-7B: 工具任务、实体抽取、情感分析（免费）
+# - DeepSeek-V3.2: 聊天回复、语音处理、QA（付费，质量最好）
+# - DeepSeek-R1: 工具调用、规划任务（付费，推理强）
+# - PaddleOCR: OCR识别（免费）
+# - Qwen2-VL: 通用视觉理解（便宜）
+#
+# 【预期费用】
+# - 新用户：14元 + 500万Tokens（约2000万Tokens）
+# - 混合使用策略：月费用 ¥20-30（1000万Tokens）
+# - 全用免费模型：¥0（但功能有限）
+#
+# ========================================
