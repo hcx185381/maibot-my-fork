@@ -93,15 +93,6 @@ price_in = 0
 price_out = 0
 force_stream_mode = false
 
-# GLM-4-9B（完全免费）
-[[models]]
-model_identifier = "THUDM/glm-4-9b-chat"
-name = "THUDM/glm-4-9b-chat"
-api_provider = "SiliconFlow"
-price_in = 0
-price_out = 0
-force_stream_mode = false
-
 # GLM-4-9B（完全免费，替代DeepSeek）
 [[models]]
 model_identifier = "THUDM/glm-4-9b-chat"

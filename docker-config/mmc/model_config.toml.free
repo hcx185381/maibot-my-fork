@@ -102,6 +102,15 @@ price_in = 0
 price_out = 0
 force_stream_mode = false
 
+# GLM-4-9B（完全免费，替代DeepSeek）
+[[models]]
+model_identifier = "THUDM/glm-4-9b-chat"
+name = "THUDM/glm-4-9b-chat"
+api_provider = "SiliconFlow"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
 # ==================== 硅基流动 - 免费视觉模型 ====================
 
 # PaddleOCR-VL（完全免费，OCR专用）
@@ -153,7 +162,7 @@ max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
-# 工具调用（使用GLM-4-9B免费模型）
+# 工具调用（使用GLM-4-9B）
 [model_task_config.tool_use]
 model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.5
@@ -169,7 +178,7 @@ max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
-# 规划任务（使用GLM-4-9B免费模型）
+# 规划任务（使用GLM-4-9B）
 [model_task_config.planner]
 model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.3
@@ -236,7 +245,7 @@ max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
-# 小规划任务（使用GLM-4-9B免费模型）
+# 小规划任务（使用GLM-4-9B）
 [model_task_config.planner_small]
 model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.3
@@ -265,9 +274,9 @@ selection_strategy = "random"
 #    - 中文能力强，适合对话
 #    - 完全免费，无限制使用
 #
-# 4. deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
-#    - DeepSeek R1蒸馏版，70亿参数
-#    - 推理能力强，适合复杂任务
+# 4. THUDM/glm-4-9b-chat (替代DeepSeek)
+#    - 智谱GLM-4，90亿参数
+#    - 中文能力强，适合对话和推理
 #    - 完全免费，无限制使用
 #
 # 5. PaddlePaddle/PaddleOCR-VL ⭐ 视觉专用
@@ -298,8 +307,8 @@ selection_strategy = "random"
 #
 # 💡 性能对比：
 # - 免费模型 vs DeepSeek-V3: 约70-80%性能
+# - GLM-4-9B: 中文能力强，适合对话和推理
 # - Qwen2.5-7B: 性价比最高，推荐主用
-# - R1蒸馏版: 推理能力强，适合复杂任务
 # - PaddleOCR: OCR识别效果好
 #
 # 💰 成本优势：
