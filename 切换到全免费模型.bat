@@ -61,7 +61,7 @@ echo.
 echo 当前配置：硅基流动全免费模型
 echo 使用模型：
 echo   • Qwen/Qwen2.5-7B-Instruct  (日常聊天)
-echo   • DeepSeek-R1-Distill-7B    (复杂推理)
+echo   • GLM-4-9B                   (复杂推理)
 echo   • PaddlePaddle/PaddleOCR-VL (OCR识别)
 echo.
 echo 💰 月费用：¥0 (完全免费！)

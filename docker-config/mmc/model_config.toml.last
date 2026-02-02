@@ -102,15 +102,6 @@ price_in = 0
 price_out = 0
 force_stream_mode = false
 
-# DeepSeek-R1-Distill-Qwen-7B（完全免费）
-[[models]]
-model_identifier = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
-name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
-api_provider = "SiliconFlow"
-price_in = 0
-price_out = 0
-force_stream_mode = false
-
 # ==================== 硅基流动 - 免费视觉模型 ====================
 
 # PaddleOCR-VL（完全免费，OCR专用）
@@ -162,9 +153,9 @@ max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
-# 工具调用（使用免费R1蒸馏版）
+# 工具调用（使用GLM-4-9B免费模型）
 [model_task_config.tool_use]
-model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.5
 max_tokens = 2000
 slow_threshold = 8
@@ -178,9 +169,9 @@ max_tokens = 2000
 slow_threshold = 15
 selection_strategy = "random"
 
-# 规划任务（使用免费R1蒸馏版）
+# 规划任务（使用GLM-4-9B免费模型）
 [model_task_config.planner]
-model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 10
@@ -245,9 +236,9 @@ max_tokens = 2000
 slow_threshold = 10
 selection_strategy = "random"
 
-# 小规划任务（使用免费R1蒸馏版）
+# 小规划任务（使用GLM-4-9B免费模型）
 [model_task_config.planner_small]
-model_list = ["deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
+model_list = ["THUDM/glm-4-9b-chat"]
 temperature = 0.3
 max_tokens = 2000
 slow_threshold = 10
