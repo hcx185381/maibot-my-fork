@@ -24,6 +24,10 @@ env/
 .env.local
 .env.*.local
 
+# API Configuration files (contains sensitive API keys)
+docker-config/mmc/model_config.toml
+docker-config/mmc/bot_config.toml
+
 # Runtime data
 data/
 logs/
