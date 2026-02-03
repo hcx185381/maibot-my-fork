@@ -20,9 +20,9 @@ logger = get_logger("emoji")
 class EmojiAction(BaseAction):
     """表情动作 - 发送表情包"""
 
-    activation_type = ActionActivationType.RANDOM
-    random_activation_probability = global_config.emoji.emoji_chance
-    parallel_action = True
+    activation_type = ActionActivationType.LLM_JUDGE  # 改为 LLM 判定，避免随机发送
+    # random_activation_probability = global_config.emoji.emoji_chance  # LLM_JUDGE 模式下不需要此参数
+    parallel_action = True  # 保持并行，允许与文字回复同时发送
 
     # 动作基本信息
     action_name = "emoji"

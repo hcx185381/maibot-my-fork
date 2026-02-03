@@ -353,6 +353,18 @@ def process_llm_response(text: str, enable_splitter: bool = True, enable_chinese
         logger.warning(f"分割后消息数量过多 ({len(sentences)} 条)，返回默认回复")
         return [f"{global_config.bot.nickname}不知道哦"]
 
+    # 去重：过滤掉连续重复的句子
+    deduped_sentences = []
+    for i, sentence in enumerate(sentences):
+        if i == 0 or sentence != sentences[i-1]:
+            deduped_sentences.append(sentence)
+        else:
+            logger.debug(f"过滤重复句子: {sentence}")
+
+    if len(deduped_sentences) < len(sentences):
+        logger.info(f"去重前: {len(sentences)} 条，去重后: {len(deduped_sentences)} 条")
+    sentences = deduped_sentences
+
     # if extracted_contents:
     #     for content in extracted_contents:
     #         sentences.append(content)

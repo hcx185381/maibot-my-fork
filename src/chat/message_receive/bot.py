@@ -218,6 +218,18 @@ class ChatBot:
 
             group_info = message.message_info.group_info
             user_info = message.message_info.user_info
+
+            # 检查消息是否来自机器人自己，避免自言自语
+            if (user_info and str(user_info.user_id) == str(global_config.bot.qq_account) and
+                message.message_info.platform == global_config.bot.platform):
+                logger.debug(f"过滤机器人自己的消息: user_id={user_info.user_id}, platform={message.message_info.platform}")
+                # 如果是 echo 消息，更新 message_id
+                if message.message_info.additional_config:
+                    sent_message = message.message_info.additional_config.get("echo", False)
+                    if sent_message:
+                        await MessageStorage.update_message(message)
+                return
+
             if message.message_info.additional_config:
                 sent_message = message.message_info.additional_config.get("echo", False)
                 if sent_message:  # 这一段只是为了在一切处理前劫持上报的自身消息，用于更新message_id，需要ada支持上报事件，实际测试中不会对正常使用造成任何问题
