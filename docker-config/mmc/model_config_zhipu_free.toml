@@ -1,0 +1,215 @@
+[inner]
+version = "1.11.0"
+
+# ========================================
+# 智谱AI官方免费方案（2026年2月确认）
+# ========================================
+# 所有模型均来自智谱AI官方，完全免费
+# 来源：https://docs.bigmodel.cn/cn/guide/models/free/glm-4-flash-250414
+#
+# 优势：
+# 1. 完全免费，无限制使用
+# 2. 性能比小参数模型（7B-9B）强很多
+# 3. 支持多模态、联网搜索、128K上下文
+# 4. 官方提供，稳定可靠
+#
+# 性能对比：
+# - GLM-4-Flash >> Qwen2.5-7B/GLM-4-9B (约3-5倍提升)
+# ========================================
+
+[[api_providers]]
+name = "GLM"
+base_url = "https://open.bigmodel.cn/api/paas/v4"
+api_key = "89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte"
+client_type = "openai"
+max_retry = 2
+timeout = 60
+retry_interval = 2
+
+# ========================================
+# 模型定义（仅智谱AI免费模型）
+# ========================================
+
+# GLM-4-Flash：智谱首个免费大模型API
+[[models]]
+model_identifier = "glm-4-flash"
+name = "glm-4-flash"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# GLM-4V-Flash：智谱免费多模态模型（视觉理解）
+[[models]]
+model_identifier = "glm-4v-flash"
+name = "glm-4v-flash"
+api_provider = "GLM"
+price_in = 0
+price_out = 0
+force_stream_mode = false
+
+# ========================================
+# 任务配置（全部使用GLM-4-Flash）
+# ========================================
+
+[models.extra_params]
+
+# 工具任务
+[model_task_config.utils]
+model_list = ["glm-4-flash"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 工具调用
+[model_task_config.tool_use]
+model_list = ["glm-4-flash"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 8
+selection_strategy = "random"
+
+# 回复生成
+[model_task_config.replyer]
+model_list = ["glm-4-flash"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 规划任务
+[model_task_config.planner]
+model_list = ["glm-4-flash"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 视觉理解（使用多模态模型）
+[model_task_config.vlm]
+model_list = ["glm-4v-flash"]
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 语音处理
+[model_task_config.voice]
+model_list = ["glm-4-flash"]
+slow_threshold = 10
+selection_strategy = "random"
+
+# 向量化（使用免费模型）
+[model_task_config.embedding]
+model_list = ["glm-4-flash"]
+slow_threshold = 5
+selection_strategy = "random"
+
+# 知识图谱实体抽取
+[model_task_config.lpmm_entity_extract]
+model_list = ["glm-4-flash"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱RDF构建
+[model_task_config.lpmm_rdf_build]
+model_list = ["glm-4-flash"]
+temperature = 0.2
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 知识图谱问答
+[model_task_config.lpmm_qa]
+model_list = ["glm-4-flash"]
+temperature = 0.7
+max_tokens = 2000
+slow_threshold = 15
+selection_strategy = "random"
+
+# 情感分析
+[model_task_config.emotion]
+model_list = ["glm-4-flash"]
+temperature = 0.5
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小工具任务
+[model_task_config.utils_small]
+model_list = ["glm-4-flash"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# 小规划任务
+[model_task_config.planner_small]
+model_list = ["glm-4-flash"]
+temperature = 0.3
+max_tokens = 2000
+slow_threshold = 10
+selection_strategy = "random"
+
+# ========================================
+# 模型说明
+# ========================================
+#
+# 【GLM-4-Flash】⭐⭐⭐⭐⭐ 强烈推荐
+# 来源：https://docs.bigmodel.cn/cn/guide/models/free/glm-4-flash-250414
+#
+# 特点：
+# - 智谱AI首个免费的大模型API
+# - 完全免费，无限制使用
+# - 支持联网搜索、长上下文(128K)
+# - 支持函数调用、多轮对话
+# - 速度极快，适合实时响应
+#
+# 适用场景：
+# - 文章创作、代码调试、代码生成
+# - 知识库问答、PPT助手
+# - 思维导图生成、智能问答
+# - 摘要生成、文本数据处理
+#
+# 性能对比：
+# - GLM-4-Flash vs Qwen2.5-7B: 约3-5倍性能提升
+# - GLM-4-Flash vs GLM-4-9B: 约2-3倍性能提升
+# - 在中文理解、指令遵循、推理能力方面显著优于小参数模型
+#
+# 【GLM-4V-Flash】⭐⭐⭐⭐⭐ 多模态专用
+#
+# 特点：
+# - 智谱免费多模态模型
+# - 支持图文理解、知识检索
+# - 完全免费，无限制使用
+#
+# 适用场景：
+# - 图片识别、OCR
+# - 视觉问答、图片描述
+# - 图表理解、文档解析
+#
+# ========================================
+# 使用说明
+# ========================================
+#
+# ✅ 优势：
+# - 100%免费，¥0/月
+# - 性能强劲，接近旗舰模型
+# - 官方提供，稳定可靠
+# - 支持多模态（视觉+文本）
+# - 128K超长上下文
+# - 支持联网搜索
+#
+# ⚠️ 限制：
+# - 有并发限制（免费级别）
+# - 个人使用完全足够
+#
+# 💡 建议：
+# - 适合个人学习、开发、测试
+# - 适合轻量级应用（日均<5000条消息）
+# - 对质量要求较高的场景
+# - 需要多模态能力的应用
+#
+# ========================================
