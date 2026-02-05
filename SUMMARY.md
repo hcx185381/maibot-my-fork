@@ -1504,8 +1504,8 @@ Git历史记录              包含所有API Key            ⚠️ 无法删除
 **修复内容**：
 ```diff
 - 之前：文档中包含明文API密钥
-  GLM API Key: 89a2bbde7e784556a0bd2ba1b6403e53.JIYEhnC8GNmW3qte
-  DeepSeek API Key: sk-d38850098a9540b7a88ded9e311f2a46
+  GLM API Key: 89***********************************************
+  DeepSeek API Key: sk-********************************
 
 + 之后：文档中移除所有明文密钥
   ⚠️ API密钥已从文档中移除以保护安全
